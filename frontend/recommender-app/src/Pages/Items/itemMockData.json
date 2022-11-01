@@ -1,0 +1,72 @@
+{   
+    "0341242019" :
+        {
+            "itemName": "Dark Grey Vest", 
+            "itemPrice": 50, 
+            "path": "Items/0341242019.jpg"
+        }, 
+    
+    "0341242026" :
+        {
+            "itemName": "Grey Vest", 
+            "itemPrice": 50, 
+            "path": "Items/0341242026.jpg"
+        }, 
+    
+    "0341782018" :
+        {
+            "itemName": "Dark Grey T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782018.jpg"
+        }, 
+    
+    "0341782022" :
+        {
+            "itemName": "Dark Blue T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782022.jpg"
+        }, 
+
+    "0341782023" :
+        {
+            "itemName": "Olive T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782023.jpg"
+        }, 
+    
+    "0341782032" :
+        {
+            "itemName": "Wine T-shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782032.jpg"
+        }, 
+    
+    "0341782033" :
+        {
+            "itemName": "Baby Blue T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782033.jpg"
+        }, 
+    
+    "0341782034" :
+        {
+            "itemName": "Baby Pink T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782034.jpg"
+        }, 
+    
+    "0341782043" :
+        {
+            "itemName": "Blue T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782043.jpg"
+        }, 
+    
+    "0341782044" :
+        {
+            "itemName": "Brown T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782044.jpg"
+        }
+}
+
