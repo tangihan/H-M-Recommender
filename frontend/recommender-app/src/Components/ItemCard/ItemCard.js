@@ -7,30 +7,35 @@ import "./ItemCard.css";
 
 const ItemCard = (props) => {
 
-    // const navigate = useNavigate();
-    // const handleOnClick = (event) => {
-    //     navigate(`/item=?${event.target.name}`, {
-    //         state: {
-    //             categories: event.target.name
-    //         }
-    //     })
-    // }
-
+    const navigate = useNavigate();
+    const handleOnClick = (event) => {
+        console.log(event)
+        navigate(`/item/${event.target.id}`, {
+            state: {
+                itemId: event.target.id
+            }
+        })
+    }
+ 
     return(
         <Card sx={{background: "#E3E3E3"}}>
             <CardActionArea
-                name={props.name}
-                // onClick={handleOnClick}
+                onClick={handleOnClick}
             >
                 <CardContent>
                     <CardMedia
+                        id={props.id}
                         component="img"
                         height="240"
                         image={require(`../../Images/${props.imagePath}`)}
                         sx={{objectFit: "contain"}}
                     />
-                    <Typography paddingTop="16px">{props.itemName}</Typography>
-                    <Typography>${props.itemPrice}</Typography>
+                    <Typography paddingTop="16px" id={props.id} >
+                        {props.itemName}
+                    </Typography>
+                    <Typography id={props.id}>
+                        ${props.itemPrice}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>  

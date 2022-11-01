@@ -2,8 +2,6 @@ import React from "react";
 
 import { Grid } from "@mui/material";
 
-import Header from "../../Components/Header/Header";
-import NavBar from "../../Components/NavBar/NavBar";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 import _ from "lodash";
 
@@ -34,9 +32,6 @@ const Items = () => {
 
     return(
         <div>
-            <Header />
-            <NavBar />
-
             <Grid 
                 container 
                 id="View All Items"
