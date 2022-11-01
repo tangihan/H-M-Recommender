@@ -4,7 +4,6 @@ import { Box, Typography, Button, Grid} from "@mui/material";
 import { HiArrowRight } from "react-icons/hi";
 import _ from "lodash";
 
-import "./Recommendations.css";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 
 const Recommendations = (props) => {
@@ -39,7 +38,11 @@ const Recommendations = (props) => {
             padding="40px"
 
         >
-            <Typography className="myHeaders">
+            <Typography 
+                fontWeight="bold"
+                fontSize="20px"
+                marginBottom="10px"
+            >
                 {props.heading}
             </Typography>
             <Grid container spacing={1}>

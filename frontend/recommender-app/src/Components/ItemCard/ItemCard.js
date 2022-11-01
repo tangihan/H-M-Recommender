@@ -12,7 +12,8 @@ const ItemCard = (props) => {
         console.log(event)
         navigate(`/item/${event.target.id}`, {
             state: {
-                itemName: event.target.title
+                itemName: event.target.title,
+                itemId: event.target.id, 
             }
         })
     }
