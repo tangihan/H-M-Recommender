@@ -1,0 +1,37 @@
+{   
+    "0341242019" :
+        {
+            "itemName": "Dark Grey Vest", 
+            "itemPrice": 50, 
+            "path": "Items/0341242019.jpg"
+        }, 
+    
+    "0341242026" :
+        {
+            "itemName": "Grey Vest", 
+            "itemPrice": 50, 
+            "path": "Items/0341242026.jpg"
+        }, 
+    
+    "0341782018" :
+        {
+            "itemName": "Dark Grey T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782018.jpg"
+        }, 
+    
+    "0341782022" :
+        {
+            "itemName": "Dark Blue T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782022.jpg"
+        }, 
+
+    "0341782023" :
+        {
+            "itemName": "Olive T-Shirt", 
+            "itemPrice": 10, 
+            "path": "Items/0341782023.jpg"
+        }
+}
+
