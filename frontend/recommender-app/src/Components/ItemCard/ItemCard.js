@@ -12,7 +12,7 @@ const ItemCard = (props) => {
         console.log(event)
         navigate(`/item/${event.target.id}`, {
             state: {
-                itemId: event.target.id
+                itemName: event.target.id
             }
         })
     }
@@ -24,16 +24,16 @@ const ItemCard = (props) => {
             >
                 <CardContent>
                     <CardMedia
-                        id={props.id}
+                        id={props.itemName}
                         component="img"
                         height="240"
                         image={require(`../../Images/${props.imagePath}`)}
                         sx={{objectFit: "contain"}}
                     />
-                    <Typography paddingTop="16px" id={props.id} >
+                    <Typography paddingTop="16px" id={props.itemName} >
                         {props.itemName}
                     </Typography>
-                    <Typography id={props.id}>
+                    <Typography id={props.itemName}>
                         ${props.itemPrice}
                     </Typography>
                 </CardContent>
