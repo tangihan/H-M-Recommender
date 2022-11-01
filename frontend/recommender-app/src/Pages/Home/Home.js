@@ -1,14 +1,14 @@
 import React from "react";
 
 import Header from "../../Components/Header/Header";
-import Menu from "../../Components/Menu/Menu";
+import NavBar from "../../Components/NavBar/NavBar";
 
 
 const Home = () => {
     return(
         <div>
             <Header />
-            <Menu />
+            <NavBar />
             insert home page code here
         </div> 
     )

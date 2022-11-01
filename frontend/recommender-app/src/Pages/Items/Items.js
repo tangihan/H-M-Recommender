@@ -1,13 +1,13 @@
 import React from "react";
 
 import Header from "../../Components/Header/Header";
-import Menu from "../../Components/Menu/Menu";
+import NavBar from "../../Components/NavBar/NavBar";
 
 const Items = () => {
     return(
         <div>
             <Header />
-            <Menu />
+            <NavBar />
 
             insert items code here
         </div> 
