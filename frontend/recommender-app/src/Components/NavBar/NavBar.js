@@ -5,7 +5,7 @@ import { Button, Box } from "@mui/material";
 import _ from "lodash";
 
 const NavBar = () => {
-    
+
     const navigate = useNavigate();
     const handleOnClick = (event) => {
         navigate(`/${event.target.name}`, {
@@ -15,27 +15,27 @@ const NavBar = () => {
         })
     }
 
-    const catList = ["Ladies", "Divided", "Men", "Baby", "Kids", "Sport", "MAGAZINE", "Sustainability"]
-    var categories = []
+    const catList = ["Ladies", "Divided", "Men", "Baby", "Kids", "Sport", "MAGAZINE", "Sustainability"];
+    var categories = [];
     _.forEach(catList, cat => {
         categories.push(
-        <Button
-            name={cat}
-            style={{textTransform: "none", color: "#000000", padding: "10px 20px"}}
-            key={cat}
-            onClick={handleOnClick}
-        >
-            {cat}
-        </Button>
-        )
+            <Button
+                name={cat}
+                style={{ textTransform: "none", color: "#000000", padding: "10px 20px" }}
+                key={cat}
+                onClick={handleOnClick}
+            >
+                {cat}
+            </Button>
+        );
     })
 
-    return(
+    return (
         <Box
             display="flex"
             justifyContent="center"
         >
-           {categories}
+            {categories}
         </Box>
     )
 }

@@ -15,8 +15,8 @@ function App() {
   return (
     <div id="layout"> 
     <CssBaseline />
-    <Header />
     <Router> 
+      <Header />
       <NavBar />
       <Routes> 
         <Route path="/" element={<Home />} />
