@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 
 import ItemCard from "../../Components/ItemCard/ItemCard";
 import _ from "lodash";
+import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 
 
 const Items = () => {
@@ -32,6 +33,7 @@ const Items = () => {
 
     return(
         <div>
+            <BreadCrumbs />
             <Grid 
                 container 
                 id="View All Items"

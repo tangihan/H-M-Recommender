@@ -7,11 +7,7 @@ import ItemDetails from "./Pages/ItemDetails/ItemDetails";
 import Header from "./Components/Header/Header";
 import NavBar from "./Components/NavBar/NavBar";
 
-
 import CssBaseline from "@mui/material/CssBaseline";
-import BreadCrumbs from "./Components/BreadCrumbs/BreadCrumbs";
-
-
 
 function App() {
   return (
@@ -20,7 +16,6 @@ function App() {
     <Router> 
       <Header />
       <NavBar />
-      <BreadCrumbs />
       <Routes> 
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<Items />} />
