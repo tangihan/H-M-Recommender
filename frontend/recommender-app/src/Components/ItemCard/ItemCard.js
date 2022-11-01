@@ -35,6 +35,7 @@ const ItemCard = (props) => {
                         paddingTop="16px" 
                         id={props.id} 
                         title= {props.itemName}
+                        fontWeight="bold"
                     >
                         {props.itemName}
                     </Typography>
