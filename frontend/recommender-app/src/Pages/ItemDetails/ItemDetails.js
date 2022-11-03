@@ -35,18 +35,15 @@ const ItemDetails = () => {
                 <Box 
                     display="flex"
                     justifyContent="space-evenly"
-                    padding="3%"
+                    padding="40px"
                     flexDirection="column"
                     width="30%"
                 >
-                    <Typography 
-                        fontWeight="bold"
-                        padding="2% 0%"
-                    >
+                    <Typography fontWeight="bold">
                         {itemData["itemName"]}
                     </Typography>
                     <Typography 
-                        padding="2% 0% 18% 0%"
+                        paddingBottom="75px"
                         fontSize="18px"
                     >
                         ${itemData["itemPrice"]}
@@ -72,8 +69,8 @@ const ItemDetails = () => {
                         style={{
                                     backgroundColor:"#000000", 
                                     color:"#FFFFFF", 
-                                    padding: "5% 0%",
-                                    margin: "10% 0%",
+                                    padding: "20px 0px",
+                                    margin: "20px 0px",
                                     width:"100%"
                                 }}
                     >

@@ -35,7 +35,7 @@ const Recommendations = (props) => {
             display="flex"
             justifyContent="center"
             flexDirection="column"
-            padding="40px"
+            padding="20px 40px"
 
         >
             <Typography 

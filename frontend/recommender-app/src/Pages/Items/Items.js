@@ -75,7 +75,7 @@ const Items = () => {
                     </Button>
                     </Box>
                     <Box>
-                        <Typography fontSize="12px">1000 items</Typography>
+                        <Typography fontSize="12px">10 items</Typography>
                     </Box>
                 </Box>
                 
