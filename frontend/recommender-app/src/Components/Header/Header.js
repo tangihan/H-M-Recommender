@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, MouseEvent } from "react";
 import { Link as LinkRouter } from "react-router-dom";
 
-import { Link, Grid, Box} from "@mui/material";
+import { Link, Grid, Box, Menu, MenuItem } from "@mui/material";
 import { VscAccount } from "react-icons/vsc";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import _ from "lodash";
+import _, { set } from "lodash";
 
 import "./Header.css";
 
@@ -24,6 +24,19 @@ const Header = () => {
                 </Link>
         );
     })
+
+    const [user, setUser] = useState("Account");
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    const handleClose = (event) => {
+        if (event.target.id != "") {
+            setUser(event.target.id)
+        }
+        setAnchorEl(null);
+      };
     
     return(
         <Grid 
@@ -50,9 +63,24 @@ const Header = () => {
                         underline="none"
                         component="button"
                         color="#000000"
+                        onClick={handleClick}
                     > 
-                        <VscAccount size={18} />&nbsp;&nbsp;UserName
+                        <VscAccount size={18} />&nbsp;&nbsp;{user}
                     </Link>
+                    <Menu
+                        id="userMenu"
+                        sx={{marginTop:"5px"}}
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'userMenu',
+                        }}
+                    >
+                        <MenuItem sx={{fontSize:"12px"}} id="Account" onClick={handleClose}>Account</MenuItem>
+                        <MenuItem sx={{fontSize:"12px"}} id="Teenager" onClick={handleClose}>Teenager</MenuItem>
+                        <MenuItem sx={{fontSize:"12px"}} id="Working Adult" onClick={handleClose}>Working Adult</MenuItem>
+                    </Menu>
                     <Box width="10%"/>
                     <Link 
                         className="headerButton"
