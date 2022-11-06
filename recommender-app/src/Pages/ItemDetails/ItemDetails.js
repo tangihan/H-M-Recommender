@@ -1,4 +1,6 @@
-import React from "react";
+// import React from "react";
+
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography, FormControl, TextField, MenuItem, Button } from "@mui/material";
@@ -6,6 +8,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
+import { getRecommendationByProperty } from "../../API/api";
+import { getRecommendationBySeason } from "../../API/api";
 
 const ItemDetails = () => {
 
@@ -13,6 +17,7 @@ const ItemDetails = () => {
 
 
     const [data, setData] = useState();
+    const [data2, setData2] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -21,12 +26,21 @@ const ItemDetails = () => {
 
     const fetchRecommendation = async () => {
         try {
-            const response = await getRecommendationByProperty("Winter");
+            const response = await getRecommendationByProperty("Shoes", "Ladies Accessories");
             setData(response.data);
             setIsLoading(false);
         } catch (e) {
             console.log(e)
         }
+
+        try {
+            const response = await getRecommendationBySeason("Winter");
+            setData2(response.data2);
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+
     };
 
 
@@ -96,19 +110,27 @@ const ItemDetails = () => {
 
             { isLoading ?
 
-                <Recommendations 
-                heading="You may be interested in"
-                data={require("./popularItemMockData.json")}
-                type="Property"
-                /> 
+                <Box 
+                    height="100px"    
+                />  
                 
                 :
+                
+                <>
+                <Recommendations 
+                heading="You may be interested in"
+                // data={require("./popularItemMockData.json")}
+                data = {data}
+                type="Property"
+                /> 
 
                 <Recommendations 
                 heading="Others also bought"
-                data={require("./popularItemMockData.json")}
+                // data={require("./popularItemMockData.json")}
+                data2 = {data2}
                 type="Product"
-            />
+                />
+                </>
 
             }
 
