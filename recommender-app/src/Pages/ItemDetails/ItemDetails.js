@@ -11,6 +11,25 @@ const ItemDetails = () => {
 
     const { itemData } = useLocation().state; // for querying api
 
+
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetchRecommendation();
+    }, []);
+
+    const fetchRecommendation = async () => {
+        try {
+            const response = await getRecommendationByProperty("Winter");
+            setData(response.data);
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
+
     return(
         <div>
             <BreadCrumbs />
@@ -74,17 +93,27 @@ const ItemDetails = () => {
             </Box>
             
             {/* enclose recommendations with isLoadin */}
-            <Recommendations 
+
+            { isLoading ?
+
+                <Recommendations 
                 heading="You may be interested in"
                 data={require("./popularItemMockData.json")}
                 type="Property"
-            />
+                /> 
+                
+                :
 
-            <Recommendations 
+                <Recommendations 
                 heading="Others also bought"
                 data={require("./popularItemMockData.json")}
                 type="Product"
             />
+
+            }
+
+
+
         </div> 
     )
 }

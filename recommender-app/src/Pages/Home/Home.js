@@ -49,6 +49,7 @@ const Home = () => {
             </Box>
             
             { isLoading ? 
+
                 <Box 
                     height="100px"    
                 />             
