@@ -72,7 +72,8 @@ const ItemDetails = () => {
                     </Button>
                 </Box> 
             </Box>
-
+            
+            {/* enclose recommendations with isLoadin */}
             <Recommendations 
                 heading="You may be interested in"
                 data={require("./popularItemMockData.json")}
