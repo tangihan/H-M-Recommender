@@ -40,6 +40,7 @@ const ItemDetails = () => {
         } catch (e) {
             console.log(e)
         }
+        console.log(data2)
 
     };
 
@@ -126,8 +127,8 @@ const ItemDetails = () => {
 
                 <Recommendations 
                 heading="Others also bought"
-                // data={require("./popularItemMockData.json")}
-                data2 = {data2}
+                data={require("./popularItemMockData.json")}
+                // data2 = {data2}
                 type="Product"
                 />
                 </>
