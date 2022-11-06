@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 
 import { Grid, Typography, Box, Button} from "@mui/material";
 import _ from "lodash";
@@ -12,20 +14,22 @@ import ItemCard from "../../Components/ItemCard/ItemCard";
 
 const Items = () => {
 
+    const { categories } = useLocation().state;
+    console.log(categories)
+
     var itemList = [];
-    const data = require("./itemMockData.json");
-    _.map(Object.keys(data), (key) => {
-        const item = data[key];
+    const data = require(`./${categories}MockData.json`);
+    _.forEach(data, (item) => {
         itemList.push(
             <Grid 
                 item 
                 xs={2.4}
-                key={key}
+                key={item["ariticleId"]}
             >
                 <ItemCard
-                    id = {key}
-                    name = {key}
-                    imagePath = {item["path"]}
+                    id = {item["articleId"]}
+                    name = {item["articleId"]}
+                    imagePath = {`${categories}/${item["articleId"]}`}
                     itemName = {item["itemName"]}
                     itemPrice = {item["itemPrice"]}
                 />
@@ -68,7 +72,7 @@ const Items = () => {
                         variant="text"
                         fontSize="12px"
                         display="flex"
-                        alignItems="center"
+                        alignitems="center"
                         style={{color:"#000000", padding:"0px", fontSize:"12px"}}
                     >
                         <TbAdjustmentsHorizontal size={15}/> &nbsp;  FILTER & SORT 

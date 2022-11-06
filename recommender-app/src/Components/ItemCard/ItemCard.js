@@ -12,14 +12,15 @@ const ItemCard = (props) => {
         console.log(event)
         navigate(`/item/${event.target.id}`, {
             state: {
-                itemName: event.target.title,
-                itemId: event.target.id, 
+                itemData: props                
             }
         })
     }
  
     return(
-        <Card sx={{background: "#E3E3E3"}}>
+        <Card 
+            sx={{background: "#E3E3E3", height:"360px"}}
+        >
             <CardActionArea
                 onClick={handleOnClick}
             >
@@ -28,7 +29,7 @@ const ItemCard = (props) => {
                         id={props.id}
                         component="img"
                         height="240"
-                        image={require(`../../Images/${props.imagePath}`)}
+                        image={require(`../../Images/${props.imagePath}.jpg`)}
                         sx={{objectFit: "contain"}}
                         title= {props.itemName}
                     />

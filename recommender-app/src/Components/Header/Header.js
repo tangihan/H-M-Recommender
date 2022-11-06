@@ -1,12 +1,13 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, useContext } from "react";
 import { Link as LinkRouter } from "react-router-dom";
 
 import { Link, Grid, Box, Menu, MenuItem } from "@mui/material";
 import { VscAccount } from "react-icons/vsc";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import _, { set } from "lodash";
+import _ from "lodash";
 
 import "./Header.css";
+import { AccountContext } from "../../Contexts/AccountContext";
 
 const Header = () => {
 
@@ -25,15 +26,15 @@ const Header = () => {
         );
     })
 
-    const [user, setUser] = useState("Account");
+    const { accountType, setAccountType } = useContext(AccountContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
     const handleClose = (event) => {
-        if (event.target.id != "") {
-            setUser(event.target.id)
+        if (event.target.id === "Account" || event.target.id === "Teenager" || event.target.id === "Working Adult") {
+            setAccountType(event.target.id)
         }
         setAnchorEl(null);
       };
@@ -65,7 +66,7 @@ const Header = () => {
                         color="#000000"
                         onClick={handleClick}
                     > 
-                        <VscAccount size={18} />&nbsp;&nbsp;{user}
+                        <VscAccount size={18} />&nbsp;&nbsp;{accountType}
                     </Link>
                     <Menu
                         id="userMenu"

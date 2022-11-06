@@ -23,7 +23,7 @@ const NavBar = () => {
                 name={cat}
                 style={{ textTransform: "none", color: "#000000", padding: "10px 20px" }}
                 key={cat}
-                onClick={handleOnClick}
+                onClick= {cat === "Ladies" || cat === "Men" ? handleOnClick : null}
             >
                 {cat}
             </Button>

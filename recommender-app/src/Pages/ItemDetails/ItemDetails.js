@@ -9,13 +9,7 @@ import Recommendations from "../../Components/Recommendations/Recommendations";
 
 const ItemDetails = () => {
 
-    const itemData = {
-                        "itemName": "Dark Grey Vest", 
-                        "itemPrice": 50, 
-                        "path": "Items/0341242019.jpg"
-                     }
-    const { itemId } = useLocation().state; // for querying api
-
+    const { itemData } = useLocation().state; // for querying api
 
     return(
         <div>
@@ -28,16 +22,16 @@ const ItemDetails = () => {
                 flexDirection="row"
             >
                 <img 
-                    src={require(`../../Images/${itemData["path"]}`)}
+                    src={require(`../../Images/ItemDetails/${itemData["id"]}.jpg`)}
                     alt={itemData["itemName"]}
-                    width="25%"
+                    width="350px"
                 />
                 <Box 
                     display="flex"
                     justifyContent="space-evenly"
                     padding="40px"
                     flexDirection="column"
-                    width="30%"
+                    width="400px"
                 >
                     <Typography fontWeight="bold">
                         {itemData["itemName"]}
@@ -81,12 +75,14 @@ const ItemDetails = () => {
 
             <Recommendations 
                 heading="You may be interested in"
-                data="./popularItemMockData.json"
+                data={require("./popularItemMockData.json")}
+                type="Property"
             />
 
             <Recommendations 
                 heading="Others also bought"
-                data="./popularItemMockData.json"
+                data={require("./popularItemMockData.json")}
+                type="Product"
             />
         </div> 
     )

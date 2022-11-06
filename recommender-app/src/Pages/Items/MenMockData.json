@@ -1,0 +1,61 @@
+[
+    {   
+        "articleId":  "0699923068",
+        "itemName": "Dark Grey Vest", 
+        "itemPrice": 50
+    }, 
+
+    {   
+        "articleId":  "0599945011",
+        "itemName": "Grey Vest", 
+        "itemPrice": 50
+    }, 
+
+    {   
+        "articleId":  "0599958001",
+        "itemName": "Dak Grey T-Shirt", 
+        "itemPrice": 10
+    }, 
+
+    {   
+        "articleId":  "0599796001",
+        "itemName": "Dark Blue T-Shirt", 
+        "itemPrice": 10
+    }, 
+    {   
+        "articleId":  "0399223033",
+        "itemName": "Olive T-Shirt", 
+        "itemPrice": 10 
+    }, 
+
+    {   
+        "articleId":  "0399087047",
+        "itemName": "Wine T-shirt", 
+        "itemPrice": 10
+    }, 
+
+    {   
+        "articleId":  "0799984001",
+        "itemName": "Baby Blue T-Shirt", 
+        "itemPrice": 10
+    }, 
+
+    {   
+        "articleId":  "0569984037",
+        "itemName": "Baby Pink T-Shirt", 
+        "itemPrice": 10
+    }, 
+
+    {   
+        "articleId":  "0509893011",
+        "itemName": "Blue T-Shirt", 
+        "itemPrice": 10
+    }, 
+
+    {   
+        "articleId":  "0499883002",
+        "itemName": "Brown T-Shirt", 
+        "itemPrice": 10
+    }
+]
+

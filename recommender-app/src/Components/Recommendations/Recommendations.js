@@ -9,24 +9,30 @@ import ItemCard from "../../Components/ItemCard/ItemCard";
 const Recommendations = (props) => {
 
     var itemList = [];
-    const data = require(`${props.data}`);
+    let count = 0
+    const data = props.data;
+    
     _.map(Object.keys(data), (key) => {
+            if (count === 5) {
+                return;
+            }
             const item = data[key];
             itemList.push(
                 <Grid 
                     item 
                     xs={2.25}
-                    key={key}
+                    key={item["articleId"]}
                 >
                     <ItemCard
-                        id = {key}
-                        name = {key}
-                        imagePath = {item["path"]}
-                        itemName = {item["itemName"]}
-                        itemPrice = {item["itemPrice"]}
+                        id = {item["articleId"]}
+                        name = {item["articleId"]}
+                        imagePath = {`${props.type}/${item["articleId"]}`}
+                        itemName = {item["productName"]}
+                        itemPrice = {props.type === "Popular" ? item["a.maxPrice"] : item["price"]}
                     />
                 </Grid>
             )
+            count += 1;
         }
     )
 
