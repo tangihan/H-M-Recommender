@@ -18,13 +18,11 @@ const ItemCard = (props) => {
     }
  
     return(
-        <Card 
-            sx={{background: "#E3E3E3", height:"360px"}}
-        >
+        <Card sx={{background: "#EBEAE8"}}>
             <CardActionArea
                 onClick={handleOnClick}
             >
-                <CardContent>
+                <CardContent sx={{height:"360px"}}>
                     <CardMedia
                         id={props.id}
                         component="img"
