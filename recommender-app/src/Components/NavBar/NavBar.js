@@ -17,27 +17,26 @@ const NavBar = () => {
     }
 
     const catList = ["Ladies", "Divided", "Men", "Baby", "Kids", "Sport", "MAGAZINE", "Sustainability"];
-    var categories = [];
-    _.forEach(catList, cat => {
-        categories.push(
-            <Button
-                name={cat}
-                style={{ textTransform: "none", color: "#000000", padding: "10px 20px" }}
-                key={cat}
-                onClick= {cat === "Ladies" || cat === "Men" ? handleOnClick : null}
-            >
-                {cat}
-            </Button>
-            
-        );
-    })
 
     return (
         <Box
             display="flex"
             justifyContent="center"
         >
-            {categories}
+            { _.map(catList, cat => {
+                    return( 
+                    <Button
+                        name={cat}
+                        style={{ textTransform: "none", color: "#000000", padding: "10px 20px" }}
+                        key={cat}
+                        onClick= {cat === "Ladies" || cat === "Men" ? handleOnClick : null}
+                    >
+                        {cat}
+                    </Button>
+                        )
+                    } 
+                )
+            }
         </Box>
     )
 }

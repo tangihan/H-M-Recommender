@@ -4,7 +4,7 @@ import { Box} from "@mui/material";
 
 import Recommendations from "../../Components/Recommendations/Recommendations";
 import { AccountContext } from "../../Contexts/AccountContext";
-import { getRecommendationBySeason } from "../../API/api";
+import { getRecommendationByProduct, getRecommendationBySeason } from "../../API/api";
 
 const Home = () => {
 
@@ -14,12 +14,18 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         fetchRecommendation();
-    }, []);
+    }, [accountType]);
 
     const fetchRecommendation = async () => {
         try {
-            const response = await getRecommendationBySeason("Winter");
+            let response;
+            if (accountType === "Account") {
+                response = await getRecommendationBySeason("Winter");
+            } else {
+                response = await getRecommendationByProduct("200 den 1p Tights");
+            }
             setData(response.data);
             setIsLoading(false);
         } catch (e) {
@@ -46,7 +52,6 @@ const Home = () => {
             </Box>
             
             { isLoading ? 
-
                 <Box 
                     height="100px"    
                 />             

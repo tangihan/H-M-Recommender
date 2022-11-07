@@ -12,20 +12,7 @@ import { AccountContext } from "../../Contexts/AccountContext";
 const Header = () => {
 
     const linkList = ["Customer Service", "Newsletter", "Find a store"];
-    var links = [];
-    _.forEach(linkList, aLink => {
-        links.push(
-                <Link 
-                    style={{ textTransform: "none", color: "#000000", padding: "0px 10px" }}
-                    underline="hover"
-                    component="button"
-                    key={aLink}
-                > 
-                    {aLink}
-                </Link>
-        );
-    })
-
+    
     const { accountType, setAccountType } = useContext(AccountContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -40,6 +27,7 @@ const Header = () => {
       };
     
     return(
+        <div id="header">
         <Grid 
             container  
             alignItems="center"
@@ -47,7 +35,20 @@ const Header = () => {
             padding="10px 30px 0px 30px"
         >   
             <Grid item xs={4}>
-                {links}
+                { _.map(linkList, aLink => {
+                        return( 
+                        <Link 
+                            style={{ textTransform: "none", color: "#000000", padding: "0px 10px" }}
+                            underline="hover"
+                            component="button"
+                            key={aLink}
+                        > 
+                            {aLink}
+                        </Link>
+                            )
+                        } 
+                    )
+                }
             </Grid>
             <Grid item xs={4} display="flex" justifyContent="center">
                 <LinkRouter to="/">
@@ -93,6 +94,7 @@ const Header = () => {
                     </Link>                    
             </Grid>
         </Grid>
+        </div>
     )
 }
 
