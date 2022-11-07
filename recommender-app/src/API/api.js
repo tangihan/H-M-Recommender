@@ -48,8 +48,47 @@ const getStoreCatalog = (gender) => {
 
 };
 
+const getRecommendationByProduct = (productName) => {      
+
+  var data = JSON.stringify({
+      "neo4j-username": USERNAME,
+      "neo4j-password": PASSWORD,
+      "productName": `'${productName}'`
+  });
+
+  var config = {
+    method: "post",
+    url: `${BASE_URL}recommendation/product`,
+    data: data,
+    headers: HEADERS
+  };
+  
+  return axios(config);
+
+};
+
+const getRecommendationByProperty = (articleId) => {      
+
+  var data = JSON.stringify({
+      "neo4j-username": USERNAME,
+      "neo4j-password": PASSWORD,
+      "articleId": articleId
+  });
+
+  var config = {
+    method: "post",
+    url: `${BASE_URL}recommendation/property`,
+    data: data,
+    headers: HEADERS
+  };
+  
+  return axios(config);
+
+};
 
 export {
   getRecommendationBySeason,
-  getStoreCatalog
+  getStoreCatalog,
+  getRecommendationByProduct,
+  getRecommendationByProperty
 };

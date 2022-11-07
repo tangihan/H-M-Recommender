@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography, FormControl, TextField, MenuItem, Button } from "@mui/material";
@@ -6,10 +7,50 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
+import { getRecommendationByProperty } from "../../API/api";
+import { getRecommendationByProduct } from "../../API/api";
 
 const ItemDetails = () => {
 
     const { itemData } = useLocation().state; // for querying api
+
+    // const { accountType } = useContext(AccountContext);
+
+    const [recommendationsByProperty, setData] = useState();
+    const [recommendationsByProduct, setData2] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetchRecommendation();
+    }, []);
+
+    const fetchRecommendation = async () => {
+        try {
+            const response = await getRecommendationByProperty(108775015);
+            setData(response.data);
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+
+    };
+
+    useEffect(() => {
+        fetchRecommendationByProduct();
+    }, []);
+
+    const fetchRecommendationByProduct = async () => {
+        try {
+            const response = await getRecommendationByProduct("200 den 1p Tights");
+            setData2(response.data);
+            console.log(response.data);
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+
+    };
+
 
     console.log(itemData)
 
@@ -76,17 +117,39 @@ const ItemDetails = () => {
             </Box>
             
             {/* enclose recommendations with isLoadin */}
-            <Recommendations 
-                heading="You may be interested in"
-                data={require("./popularItemMockData.json")}
-                type="Property"
-            />
 
-            <Recommendations 
+            { isLoading ?
+
+
+                <Box 
+                height="100px"    
+                />       
+
+
+                :
+
+                <>
+                <Recommendations 
+                heading="You may be interested in"
+                // data={require("./popularItemMockData.json")}
+                data = {recommendationsByProperty}
+                type="Property"
+                />
+
+                <Recommendations 
                 heading="Others also bought"
                 data={require("./popularItemMockData.json")}
+                // data = {recommendationsByProperty}
                 type="Product"
-            />
+                />
+                </>
+
+            }
+
+        
+
+
+
         </div> 
     )
 }
