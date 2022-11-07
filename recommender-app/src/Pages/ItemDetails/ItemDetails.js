@@ -22,6 +22,7 @@ const ItemDetails = () => {
 
     useEffect(() => {
         fetchRecommendation();
+        fetchRecommendationByProduct();
     }, []);
 
     const fetchRecommendation = async () => {
@@ -35,16 +36,15 @@ const ItemDetails = () => {
 
     };
 
-    useEffect(() => {
-        fetchRecommendationByProduct();
-    }, []);
 
     const fetchRecommendationByProduct = async () => {
         try {
             const response = await getRecommendationByProduct("200 den 1p Tights");
-            setData2(response.data);
             console.log(response.data);
+            setData2(response.data);
             setIsLoading(false);
+
+            console.log(recommendationsByProduct)
         } catch (e) {
             console.log(e)
         }
@@ -139,8 +139,8 @@ const ItemDetails = () => {
 
                 <Recommendations 
                 heading="Others also bought"
-                data={require("./popularItemMockData.json")}
-                // data = {recommendationsByProperty}
+                // data={require("./popularItemMockData.json")}
+                data = {recommendationsByProduct}
                 type="Product"
                 />
                 </>
