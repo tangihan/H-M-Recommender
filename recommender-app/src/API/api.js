@@ -9,7 +9,7 @@ const HEADERS = {
   "Content-Type": "application/json"
 }
 
-const getRecommendationBySeason= (seasonName) => {      
+const getRecommendationBySeason = (seasonName) => {      
 
     var data = JSON.stringify({
         "neo4j-username": USERNAME,
@@ -29,18 +29,17 @@ const getRecommendationBySeason= (seasonName) => {
 };
 
 
-const getRecommendationByProperty= (garmentGroupName, indexName) => {      
+const getStoreCatalog = (gender) => {      
 
   var data = JSON.stringify({
       "neo4j-username": USERNAME,
       "neo4j-password": PASSWORD,
-      "garmentGroupName": `'${garmentGroupName}'`,
-      "indexName": `'${indexName}'`,
+      "gender": `${gender === "Ladies" ? "F" : "M" }`
   });
 
   var config = {
     method: "post",
-    url: `${BASE_URL}recommendation/property`,
+    url: `${BASE_URL}store-catalog`,
     data: data,
     headers: HEADERS
   };
@@ -49,29 +48,8 @@ const getRecommendationByProperty= (garmentGroupName, indexName) => {
 
 };
 
-
-const getRecommendationByProduct= (productName) => {      
-
-  var data = JSON.stringify({
-      "neo4j-username": USERNAME,
-      "neo4j-password": PASSWORD,
-      "productName": `'${productName}'`
-  });
-
-  var config = {
-    method: "post",
-    url: `${BASE_URL}recommendation/product`,
-    data: data,
-    headers: HEADERS
-  };
-  
-  return axios(config);
-
-};
 
 export {
   getRecommendationBySeason,
-  getRecommendationByProperty,
-  getRecommendationByProduct
-
+  getStoreCatalog
 };

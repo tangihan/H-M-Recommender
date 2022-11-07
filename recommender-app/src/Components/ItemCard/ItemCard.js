@@ -9,7 +9,6 @@ const ItemCard = (props) => {
 
     const navigate = useNavigate();
     const handleOnClick = (event) => {
-        console.log(event)
         navigate(`/item/${event.target.id}`, {
             state: {
                 itemData: props                

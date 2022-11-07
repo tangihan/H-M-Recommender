@@ -28,7 +28,7 @@ const Recommendations = (props) => {
                         name = {item["articleId"]}
                         imagePath = {`${props.type}/${item["articleId"]}`}
                         itemName = {item["productName"]}
-                        itemPrice = {props.type === "Popular" ? item["a.maxPrice"] : item["price"]}
+                        itemPrice = {item["price"]}
                     />
                 </Grid>
             )

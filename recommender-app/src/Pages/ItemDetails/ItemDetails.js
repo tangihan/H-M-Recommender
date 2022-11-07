@@ -1,6 +1,4 @@
-// import React from "react";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography, FormControl, TextField, MenuItem, Button } from "@mui/material";
@@ -8,42 +6,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
-import { getRecommendationByProperty } from "../../API/api";
-import { getRecommendationBySeason } from "../../API/api";
 
 const ItemDetails = () => {
 
     const { itemData } = useLocation().state; // for querying api
 
-
-    const [data, setData] = useState();
-    const [data2, setData2] = useState();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        fetchRecommendation();
-    }, []);
-
-    const fetchRecommendation = async () => {
-        try {
-            const response = await getRecommendationByProperty("Shoes", "Ladies Accessories");
-            setData(response.data);
-            setIsLoading(false);
-        } catch (e) {
-            console.log(e)
-        }
-
-        try {
-            const response = await getRecommendationBySeason("Winter");
-            setData2(response.data2);
-            setIsLoading(false);
-        } catch (e) {
-            console.log(e)
-        }
-        console.log(data2)
-
-    };
-
+    console.log(itemData)
 
     return(
         <div>
@@ -56,7 +24,7 @@ const ItemDetails = () => {
                 flexDirection="row"
             >
                 <img 
-                    src={require(`../../Images/ItemDetails/${itemData["id"]}.jpg`)}
+                    src={require(`../../Images/${itemData["imagePath"]}.jpg`)}
                     alt={itemData["itemName"]}
                     width="350px"
                 />
@@ -108,35 +76,17 @@ const ItemDetails = () => {
             </Box>
             
             {/* enclose recommendations with isLoadin */}
-
-            { isLoading ?
-
-                <Box 
-                    height="100px"    
-                />  
-                
-                :
-                
-                <>
-                <Recommendations 
+            <Recommendations 
                 heading="You may be interested in"
-                // data={require("./popularItemMockData.json")}
-                data = {data}
+                data={require("./popularItemMockData.json")}
                 type="Property"
-                /> 
+            />
 
-                <Recommendations 
+            <Recommendations 
                 heading="Others also bought"
                 data={require("./popularItemMockData.json")}
-                // data2 = {data2}
                 type="Product"
-                />
-                </>
-
-            }
-
-
-
+            />
         </div> 
     )
 }

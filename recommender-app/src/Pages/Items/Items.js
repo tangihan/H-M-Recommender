@@ -1,43 +1,71 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-
 import { Grid, Typography, Box, Button} from "@mui/material";
-import _ from "lodash";
+import _, { set } from "lodash";
 import { IoIosArrowDown } from "react-icons/io";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import ItemCard from "../../Components/ItemCard/ItemCard";
-
-
+import { getStoreCatalog } from "../../API/api";
+import { AccountContext } from "../../Contexts/AccountContext";
 
 const Items = () => {
 
     const { categories } = useLocation().state;
-    console.log(categories)
+    const { setLocation } = useContext(AccountContext);
+    setLocation(categories);
 
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetchStoreCatalog();
+    }, [categories]);
+
+    console.log(categories);
+    console.log(isLoading);
+
+    const fetchStoreCatalog = async () => {
+        try {
+            const response = await getStoreCatalog(categories)
+            setData(response.data);
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    
     var itemList = [];
-    const data = require(`./${categories}MockData.json`);
-    _.forEach(data, (item) => {
+    if (isLoading) {
         itemList.push(
-            <Grid 
-                item 
-                xs={2.4}
-                key={item["ariticleId"]}
-            >
-                <ItemCard
-                    id = {item["articleId"]}
-                    name = {item["articleId"]}
-                    imagePath = {`${categories}/${item["articleId"]}`}
-                    itemName = {item["itemName"]}
-                    itemPrice = {item["itemPrice"]}
-                />
-            </Grid>
-           
+            <Box 
+                key="empty"
+                height="100px"    
+            />  
         )
-    })    
-
+    } else {
+        _.forEach(data, (item) => {
+            itemList.push(
+                <Grid 
+                    item 
+                    xs={2.4}
+                    key={item["articleId"]}
+                >
+                    <ItemCard
+                        id = {item["articleId"]}
+                        name = {item["articleId"]}
+                        imagePath = {`${categories}/0${item["articleId"]}`}
+                        itemName = {item["productName"]}
+                        itemPrice = {item["price"]}
+                    />
+                </Grid>
+               
+            )
+        }) 
+    }
+    
     return(
         <div>
             <BreadCrumbs />
