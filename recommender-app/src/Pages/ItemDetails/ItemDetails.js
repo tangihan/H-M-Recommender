@@ -11,6 +11,8 @@ const ItemDetails = () => {
 
     const { itemData } = useLocation().state; // for querying api
 
+    console.log(itemData)
+
     return(
         <div>
             <BreadCrumbs />
@@ -22,7 +24,7 @@ const ItemDetails = () => {
                 flexDirection="row"
             >
                 <img 
-                    src={require(`../../Images/ItemDetails/${itemData["id"]}.jpg`)}
+                    src={require(`../../Images/${itemData["imagePath"]}.jpg`)}
                     alt={itemData["itemName"]}
                     width="350px"
                 />

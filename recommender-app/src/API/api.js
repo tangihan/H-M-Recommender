@@ -9,7 +9,7 @@ const HEADERS = {
   "Content-Type": "application/json"
 }
 
-const getRecommendationBySeason= (seasonName) => {      
+const getRecommendationBySeason = (seasonName) => {      
 
     var data = JSON.stringify({
         "neo4j-username": USERNAME,
@@ -28,6 +28,28 @@ const getRecommendationBySeason= (seasonName) => {
 
 };
 
+
+const getStoreCatalog = (gender) => {      
+
+  var data = JSON.stringify({
+      "neo4j-username": USERNAME,
+      "neo4j-password": PASSWORD,
+      "gender": `${gender === "Ladies" ? "F" : "M" }`
+  });
+
+  var config = {
+    method: "post",
+    url: `${BASE_URL}store-catalog`,
+    data: data,
+    headers: HEADERS
+  };
+  
+  return axios(config);
+
+};
+
+
 export {
-  getRecommendationBySeason
+  getRecommendationBySeason,
+  getStoreCatalog
 };

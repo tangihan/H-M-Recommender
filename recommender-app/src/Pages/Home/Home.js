@@ -10,7 +10,6 @@ const Home = () => {
 
     const { accountType } = useContext(AccountContext);
 
-    // copy from here
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -27,8 +26,6 @@ const Home = () => {
             console.log(e)
         }
     };
-
-    // to here 
 
     return(
         <Box
