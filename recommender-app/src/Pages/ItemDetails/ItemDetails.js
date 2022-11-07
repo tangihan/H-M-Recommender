@@ -14,45 +14,35 @@ const ItemDetails = () => {
 
     const { itemData } = useLocation().state; // for querying api
 
-    // const { accountType } = useContext(AccountContext);
-
-    const [recommendationsByProperty, setData] = useState();
-    const [recommendationsByProduct, setData2] = useState();
+    const [propertyData, setPropertyData] = useState();
+    const [productData, setProductData] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetchRecommendation();
+        fetchRecommendationByProperty();
         fetchRecommendationByProduct();
     }, []);
 
-    const fetchRecommendation = async () => {
+    const fetchRecommendationByProperty = async () => {
         try {
             const response = await getRecommendationByProperty(108775015);
-            setData(response.data);
-            setIsLoading(false);
+            setPropertyData(response.data);
         } catch (e) {
             console.log(e)
         }
 
     };
-
 
     const fetchRecommendationByProduct = async () => {
         try {
             const response = await getRecommendationByProduct("200 den 1p Tights");
-            console.log(response.data);
-            setData2(response.data);
+            setProductData(response.data);
             setIsLoading(false);
-
-            console.log(recommendationsByProduct)
         } catch (e) {
             console.log(e)
         }
 
     };
-
-
-    console.log(itemData)
 
     return(
         <div>
@@ -120,28 +110,23 @@ const ItemDetails = () => {
             {/* enclose recommendations with isLoadin */}
 
             { isLoading ?
-
-
                 <Box 
                 height="100px"    
                 />       
-
-
                 :
-
                 <>
                 <Recommendations 
-                heading="You may be interested in"
-                // data={require("./popularItemMockData.json")}
-                data = {recommendationsByProperty}
-                type="Property"
+                    heading="You may be interested in"
+                    // data={require("./popularItemMockData.json")}
+                    data = {propertyData}
+                    type="Property"
                 />
 
                 <Recommendations 
-                heading="Others also bought"
-                // data={require("./popularItemMockData.json")}
-                data = {recommendationsByProduct}
-                type="Product"
+                    heading="Others also bought"
+                    // data={require("./popularItemMockData.json")}
+                    data = {productData}
+                    type="Product"
                 />
                 </>
 

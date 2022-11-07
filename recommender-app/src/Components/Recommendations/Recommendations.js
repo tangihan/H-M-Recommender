@@ -7,7 +7,7 @@ import _ from "lodash";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 
 const Recommendations = (props) => {
-    console.log(props);
+
     var itemList = [];
     let count = 0
     const data = props.data;
