@@ -46,6 +46,7 @@ const ItemDetails = () => {
                     </Typography>
                     <FormControl>
                     <TextField
+                        value=''
                         style={{ width: "100%"}}
                         label="Select size" 
                         inputProps={{ 
@@ -54,11 +55,11 @@ const ItemDetails = () => {
                         }}
                         select
                     >
-                        <MenuItem value='day'>XS</MenuItem>
-                        <MenuItem value='week'>S</MenuItem>
-                        <MenuItem value='month'>M</MenuItem>
-                        <MenuItem value='day'>L</MenuItem>
-                        <MenuItem value='week'>XL</MenuItem>
+                        <MenuItem value='XS'>XS</MenuItem>
+                        <MenuItem value='S'>S</MenuItem>
+                        <MenuItem value='M'>M</MenuItem>
+                        <MenuItem value='L'>L</MenuItem>
+                        <MenuItem value='XL'>XL</MenuItem>
                     </TextField>
                     </FormControl>
                     <Button 

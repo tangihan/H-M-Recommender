@@ -28,6 +28,7 @@ const NavBar = () => {
             >
                 {cat}
             </Button>
+            
         );
     })
 

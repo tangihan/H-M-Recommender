@@ -1,31 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Grid, Typography, Box, Button} from "@mui/material";
-import _, { set } from "lodash";
+import _ from "lodash";
 import { IoIosArrowDown } from "react-icons/io";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 import { getStoreCatalog } from "../../API/api";
-import { AccountContext } from "../../Contexts/AccountContext";
 
 const Items = () => {
 
     const { categories } = useLocation().state;
-    const { setLocation } = useContext(AccountContext);
-    setLocation(categories);
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchStoreCatalog();
-    }, [categories]);
-
-    console.log(categories);
-    console.log(isLoading);
+    }, []);
 
     const fetchStoreCatalog = async () => {
         try {
@@ -35,7 +29,7 @@ const Items = () => {
         } catch (e) {
             console.log(e)
         }
-    }
+    };
     
     var itemList = [];
     if (isLoading) {

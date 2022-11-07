@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -15,20 +15,20 @@ import { AccountContext } from "./Contexts/AccountContext";
 function App() {
   
   const [accountType, setAccountType] = useState("Account");
-  const [location, setLocation] = useState();
 
   return (
     <div id="layout"> 
     <CssBaseline />
     <AccountContext.Provider
-      value={{accountType, setAccountType, location, setLocation}}
+      value={{accountType, setAccountType }}
     >
     <Router> 
       <Header />
       <NavBar />
       <Routes> 
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<Items key={location}/>} />
+        <Route path="/Ladies" element={<Items key="Ladies"/>} />
+        <Route path="/Men" element={<Items key="Men"/>} />
         <Route path="/item/:id" element={<ItemDetails />} />
       </Routes>
     </Router> 
