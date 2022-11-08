@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
 
 import Recommendations from "../../Components/Recommendations/Recommendations";
 import { AccountContext } from "../../Contexts/AccountContext";
-import { getRecommendationByProduct, getRecommendationBySeason } from "../../API/api";
+import { getRecommendationBySeason, getRecommendationByGeneration } from "../../API/api";
 
 const Home = () => {
 
@@ -24,7 +24,8 @@ const Home = () => {
             if (accountType === "Account") {
                 response = await getRecommendationBySeason("Winter");
             } else {
-                response = await getRecommendationByProduct("200 den 1p Tights");
+                console.log(accountType);
+                response = await getRecommendationByGeneration(accountType, "Winter");
             }
             setData(response.data);
             setIsLoading(false);

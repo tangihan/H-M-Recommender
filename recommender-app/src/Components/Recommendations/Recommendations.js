@@ -8,34 +8,8 @@ import ItemCard from "../../Components/ItemCard/ItemCard";
 
 const Recommendations = (props) => {
 
-    var itemList = [];
-    let count = 0
     const data = props.data;
     
-    _.map(Object.keys(data), (key) => {
-            if (count === 5) {
-                return;
-            }
-            const item = data[key];
-            itemList.push(
-                <Grid 
-                    item 
-                    xs={2.25}
-                    key={item["articleId"]}
-                >
-                    <ItemCard
-                        id = {item["articleId"]}
-                        name = {item["articleId"]}
-                        imagePath = {`${props.type}/${item["articleId"]}`}
-                        itemName = {item["productName"]}
-                        itemPrice = {item["price"]}
-                    />
-                </Grid>
-            )
-            count += 1;
-        }
-    )
-
     return(
         <Box
             display="flex"
@@ -52,7 +26,24 @@ const Recommendations = (props) => {
                 {props.heading}
             </Typography>
             <Grid container spacing={1}>
-                {itemList}
+                { _.map(_.take(data, 5), (item, key) => {
+                    return (
+                        <Grid 
+                            item 
+                            xs={2.25}
+                            key={item["articleId"]}
+                        >
+                            <ItemCard
+                                id = {item["articleId"]}
+                                name = {item["articleId"]}
+                                imagePath = {`${props.type}/${item["articleId"]}`}
+                                itemName = {item["productName"]}
+                                itemPrice = {item["price"]}
+                            />
+                        </Grid>
+                        )
+                    }
+                )}
                 <Grid 
                     item 
                     display="flex"

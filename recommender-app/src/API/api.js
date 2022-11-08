@@ -86,9 +86,31 @@ const getRecommendationByProperty = (articleId) => {
 
 };
 
+const getRecommendationByGeneration = (generationName, seasonName) => {      
+
+  var data = JSON.stringify({
+      "neo4j-username": USERNAME,
+      "neo4j-password": PASSWORD,
+      "generationName": `'${generationName}'`, 
+      "seasonName": `'${seasonName}'`
+
+  });
+
+  var config = {
+    method: "post",
+    url: `${BASE_URL}recommendation/generation`,
+    data: data,
+    headers: HEADERS
+  };
+  
+  return axios(config);
+
+};
+
 export {
   getRecommendationBySeason,
   getStoreCatalog,
   getRecommendationByProduct,
-  getRecommendationByProperty
+  getRecommendationByProperty, 
+  getRecommendationByGeneration
 };
