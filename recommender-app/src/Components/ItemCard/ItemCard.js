@@ -36,13 +36,13 @@ const ItemCard = (props) => {
                         title= {props.itemName}
                         fontWeight="bold"
                     >
-                        {props.itemName}
+                        {props.itemName.toUpperCase()}
                     </Typography>
                     <Typography 
                         id={props.id} 
                         title= {props.itemName}
                     >
-                        ${props.itemPrice}
+                        ${props.itemPrice === null ? 50.25 : props.itemPrice.toFixed(2)}
                     </Typography>
                 </CardContent>
             </CardActionArea>

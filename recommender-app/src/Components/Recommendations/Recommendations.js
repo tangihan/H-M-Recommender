@@ -20,7 +20,7 @@ const Recommendations = (props) => {
 
     var itemList = [];
     let count = 0;
-
+    console.log(data);
     _.map(Object.keys(data), (key) => {
         if (count === 5) {
             return 
