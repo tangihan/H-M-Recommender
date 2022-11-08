@@ -1,5 +1,4 @@
-// import React from "react";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography, FormControl, TextField, MenuItem, Button } from "@mui/material";
@@ -25,7 +24,7 @@ const ItemDetails = () => {
 
     const fetchRecommendationByProperty = async () => {
         try {
-            const response = await getRecommendationByProperty(108775015);
+            const response = await getRecommendationByProperty(itemData["id"]);
             setPropertyData(response.data);
         } catch (e) {
             console.log(e)
@@ -35,7 +34,7 @@ const ItemDetails = () => {
 
     const fetchRecommendationByProduct = async () => {
         try {
-            const response = await getRecommendationByProduct("200 den 1p Tights");
+            const response = await getRecommendationByProduct(itemData["itemName"]);
             setProductData(response.data);
             setIsLoading(false);
         } catch (e) {

@@ -20,7 +20,7 @@ const Header = () => {
         setAnchorEl(event.currentTarget);
       };
     const handleClose = (event) => {
-        if (event.target.id === "Account" || event.target.id === "Teenager" || event.target.id === "Working Adult") {
+        if (event.target.id === "Account" || event.target.id === "Teenagers" || event.target.id === "Working Adults") {
             setAccountType(event.target.id)
         }
         setAnchorEl(null);
@@ -80,8 +80,8 @@ const Header = () => {
                         }}
                     >
                         <MenuItem sx={{fontSize:"12px"}} id="Account" onClick={handleClose}>Account</MenuItem>
-                        <MenuItem sx={{fontSize:"12px"}} id="Teenager" onClick={handleClose}>Teenager</MenuItem>
-                        <MenuItem sx={{fontSize:"12px"}} id="Working Adult" onClick={handleClose}>Working Adult</MenuItem>
+                        <MenuItem sx={{fontSize:"12px"}} id="Teenagers" onClick={handleClose}>Teenagers</MenuItem>
+                        <MenuItem sx={{fontSize:"12px"}} id="Working Adults" onClick={handleClose}>Working Adults</MenuItem>
                     </Menu>
                     <Box width="10%"/>
                     <Link 
