@@ -51,13 +51,13 @@ const getStoreCatalog = (gender) => {
 
 };
 
-const getRecommendationByProduct = (productName, generationName) => {      
+const getRecommendationByProduct = (articleId, generationName) => {      
 
   var data = JSON.stringify({
       "neo4j-username": USERNAME,
       "neo4j-password": PASSWORD,
-      "productName": productName, 
-      "customerId": `'${generationName === "Teenagers" ? teenagerId : adultId}'`
+      "customerId": `'${generationName === "Teenagers" ? teenagerId : adultId}'`,
+      "articleId": articleId, 
   });
 
   var config = {
@@ -120,8 +120,6 @@ const getRecommendationByGeneration = (generationName, seasonName) => {
       "customerId": `'${generationName === "Teenagers" ? teenagerId : adultId}'`, 
       "todayDate":`'${seasonName === "Winter" ? "2020-19-01" : "2020-06-01"}'`
   });
-
-  console.log(data)
 
   var config = {
     method: "post",

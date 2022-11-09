@@ -8,8 +8,7 @@ import { getRecommendationBySeason, getRecommendationByGeneration } from "../../
 
 const Home = () => {
 
-    const { accountType } = useContext(AccountContext);
-    const { seasonType } = useContext(AccountContext);
+    const { accountType, seasonType } = useContext(AccountContext);
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);

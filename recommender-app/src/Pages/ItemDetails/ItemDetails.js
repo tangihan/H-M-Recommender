@@ -6,15 +6,15 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
-// import { getRecommendationByProperty, getRecommendationByProduct, getRecommendationByProductColdStart } from "../../API/api";
-import { getRecommendationByProduct, getRecommendationByProductColdStart } from "../../API/api";
+// import { getRecommendationByProperty, getRecommendationByProduct, getRecommendationByProductColdStart, getRecommendationByGeneration } from "../../API/api";
+import { getRecommendationByProduct, getRecommendationByProductColdStart, getRecommendationByGeneration } from "../../API/api";
 import { AccountContext } from "../../Contexts/AccountContext";
 
 
 const ItemDetails = () => {
 
     const { itemData } = useLocation().state; 
-    const { accountType } = useContext(AccountContext);
+    const { accountType, seasonType } = useContext(AccountContext);
 
     const [propertyData, setPropertyData] = useState();
     const [productData, setProductData] = useState();
@@ -31,9 +31,9 @@ const ItemDetails = () => {
             if (accountType === "Account") {
                 productResponse = await getRecommendationByProductColdStart(itemData["itemName"]);
             } else {
-                productResponse = await getRecommendationByProduct(itemData["itemName"], accountType);
+                productResponse = await getRecommendationByProduct(itemData["id"], accountType);
                 if (Object.keys(productResponse).length === 0) {
-                    productResponse = await getRecommendationByProductColdStart(itemData["itemName"]);
+                    productResponse = await getRecommendationByGeneration(accountType, seasonType);
                 }
             }
             // const propertyResponse = await getRecommendationByProperty(itemData["id"]);
@@ -114,17 +114,16 @@ const ItemDetails = () => {
                 />       
                 :
                 <>
-                {/* <Recommendations 
-                    heading="You may be interested in"
-                    data = {propertyData}
-                    type="Property"
-                /> */}
-
                 <Recommendations 
                     heading="Others also bought"
                     data = {productData}
                     type="Product"
                 />
+                {/* <Recommendations 
+                    heading="You may be interested in"
+                    data = {propertyData}
+                    type="Property"
+                /> */}
                 </>                
             }
 
