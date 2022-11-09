@@ -15,12 +15,14 @@ import { AccountContext } from "./Contexts/AccountContext";
 function App() {
   
   const [accountType, setAccountType] = useState("Account");
+  const [seasonType, setSeasonType] = useState("Winter");
+
 
   return (
     <div id="layout"> 
     <CssBaseline />
     <AccountContext.Provider
-      value={{accountType, setAccountType }}
+      value={{accountType, setAccountType, seasonType, setSeasonType }}
     >
     <Router> 
       <Header />

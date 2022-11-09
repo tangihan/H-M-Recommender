@@ -9,6 +9,9 @@ const HEADERS = {
   "Content-Type": "application/json"
 }
 
+const teenagerId = "aab727ccd3536905e818f95951e4c62b671f3360caeb360895a1a7b2e9f58c18";
+const adultId = "a7216d1eb962c46cba416345cc007d2e3a70cfa1fd89ec3e3fd9ce2e007cc113";
+
 const getRecommendationBySeason = (seasonName) => {      
 
     var data = JSON.stringify({
@@ -48,12 +51,13 @@ const getStoreCatalog = (gender) => {
 
 };
 
-const getRecommendationByProduct = (productName) => {      
+const getRecommendationByProduct = (productName, generationName) => {      
 
   var data = JSON.stringify({
       "neo4j-username": USERNAME,
       "neo4j-password": PASSWORD,
-      "productName": productName
+      "productName": productName, 
+      "customerId": `'${generationName === "Teenagers" ? teenagerId : adultId}'`
   });
 
   var config = {
@@ -66,6 +70,27 @@ const getRecommendationByProduct = (productName) => {
   return axios(config);
 
 };
+
+
+const getRecommendationByProductColdStart = (productName) => {      
+
+  var data = JSON.stringify({
+      "neo4j-username": USERNAME,
+      "neo4j-password": PASSWORD,
+      "productName": `'${productName}'`
+  });
+
+  var config = {
+    method: "post",
+    url: `${BASE_URL}recommendation/product/coldstart`,
+    data: data,
+    headers: HEADERS
+  };
+  
+  return axios(config);
+
+};
+
 
 const getRecommendationByProperty = (articleId) => {      
   
@@ -91,10 +116,12 @@ const getRecommendationByGeneration = (generationName, seasonName) => {
   var data = JSON.stringify({
       "neo4j-username": USERNAME,
       "neo4j-password": PASSWORD,
-      "generationName": `'${generationName}'`, 
-      "seasonName": `'${seasonName}'`
-
+      "generationName":  `'${generationName}'`,
+      "customerId": `'${generationName === "Teenagers" ? teenagerId : adultId}'`, 
+      "todayDate":`'${seasonName === "Winter" ? "2020-19-01" : "2020-06-01"}'`
   });
+
+  console.log(data)
 
   var config = {
     method: "post",
@@ -111,6 +138,7 @@ export {
   getRecommendationBySeason,
   getStoreCatalog,
   getRecommendationByProduct,
-  getRecommendationByProperty, 
+  getRecommendationByProductColdStart,
+  // getRecommendationByProperty, 
   getRecommendationByGeneration
 };

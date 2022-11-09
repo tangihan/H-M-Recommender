@@ -42,7 +42,9 @@ const ItemCard = (props) => {
                         id={props.id} 
                         title= {props.itemName}
                     >
-                        ${props.itemPrice === null ? 50.25 : props.itemPrice.toFixed(2)}
+                        ${props.itemPrice === null ? 50.25 
+                            : Math.round((props.itemPrice + Number.EPSILON) * 100) / 100
+                        }
                     </Typography>
                 </CardContent>
             </CardActionArea>

@@ -9,6 +9,7 @@ import { getRecommendationBySeason, getRecommendationByGeneration } from "../../
 const Home = () => {
 
     const { accountType } = useContext(AccountContext);
+    const { seasonType } = useContext(AccountContext);
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -16,16 +17,19 @@ const Home = () => {
     useEffect(() => {
         setIsLoading(true);
         fetchRecommendation();
-    }, [accountType]);
+    }, [accountType, seasonType]);
 
     const fetchRecommendation = async () => {
         try {
             let response;
             if (accountType === "Account") {
-                response = await getRecommendationBySeason("Winter");
+                response = await getRecommendationBySeason(seasonType);
             } else {
                 console.log(accountType);
-                response = await getRecommendationByGeneration(accountType, "Winter");
+                response = await getRecommendationByGeneration(accountType, seasonType);
+                if (Object.keys(response.data).length === 0) {
+                    response = await getRecommendationBySeason(seasonType);
+                }
             }
             setData(response.data);
             setIsLoading(false);

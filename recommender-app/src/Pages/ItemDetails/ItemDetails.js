@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography, FormControl, TextField, MenuItem, Button } from "@mui/material";
@@ -6,12 +6,15 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
-import { getRecommendationByProperty } from "../../API/api";
-import { getRecommendationByProduct } from "../../API/api";
+// import { getRecommendationByProperty, getRecommendationByProduct, getRecommendationByProductColdStart } from "../../API/api";
+import { getRecommendationByProduct, getRecommendationByProductColdStart } from "../../API/api";
+import { AccountContext } from "../../Contexts/AccountContext";
+
 
 const ItemDetails = () => {
 
     const { itemData } = useLocation().state; 
+    const { accountType } = useContext(AccountContext);
 
     const [propertyData, setPropertyData] = useState();
     const [productData, setProductData] = useState();
@@ -22,16 +25,24 @@ const ItemDetails = () => {
     }, []);
 
     const fetchRecommendation = async () => {
+        let productResponse;
+        let propertyResponse;
         try {
-            const propertyResponse = await getRecommendationByProperty(itemData["id"]);
-            const productResponse = await getRecommendationByProduct(itemData["itemName"]);
-            setPropertyData(propertyResponse.data);
+            if (accountType === "Account") {
+                productResponse = await getRecommendationByProductColdStart(itemData["itemName"]);
+            } else {
+                productResponse = await getRecommendationByProduct(itemData["itemName"], accountType);
+                if (Object.keys(productResponse).length === 0) {
+                    productResponse = await getRecommendationByProductColdStart(itemData["itemName"]);
+                }
+            }
+            // const propertyResponse = await getRecommendationByProperty(itemData["id"]);
+            // setPropertyData(propertyResponse.data);
             setProductData(productResponse.data);
             setIsLoading(false);
         } catch (e) {
             console.log(e)
         }
-
     };
 
     return(
@@ -63,7 +74,7 @@ const ItemDetails = () => {
                         paddingBottom="75px"
                         fontSize="18px"
                     >
-                        ${itemData["itemPrice"]}
+                        ${Math.round((itemData["itemPrice"] + Number.EPSILON) * 100) / 100}
                     </Typography>
                     <FormControl>
                     <TextField
@@ -103,11 +114,11 @@ const ItemDetails = () => {
                 />       
                 :
                 <>
-                <Recommendations 
+                {/* <Recommendations 
                     heading="You may be interested in"
                     data = {propertyData}
                     type="Property"
-                />
+                /> */}
 
                 <Recommendations 
                     heading="Others also bought"
