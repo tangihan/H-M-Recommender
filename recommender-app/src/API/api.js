@@ -3,8 +3,8 @@ import axios from "axios";
 axios.defaults.trailingSlash = true;
 
 const BASE_URL = "http://127.0.0.1:8000/neo_app/";
-const USERNAME = "neo4j";
-const PASSWORD = "easycake108";
+const USERNAME = process.env.REACT_APP_USERNAME;
+const PASSWORD = process.env.REACT_APP_PASSWORD;
 const HEADERS = {
   "Content-Type": "application/json"
 }
