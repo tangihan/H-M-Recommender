@@ -68,7 +68,7 @@ const getRecommendationByProduct = (productName) => {
 };
 
 const getRecommendationByProperty = (articleId) => {      
-
+  
   var data = JSON.stringify({
       "neo4j-username": USERNAME,
       "neo4j-password": PASSWORD,

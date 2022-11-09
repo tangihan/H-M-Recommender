@@ -9,6 +9,44 @@ import ItemCard from "../../Components/ItemCard/ItemCard";
 const Recommendations = (props) => {
 
     const data = props.data;
+
+    const tryRequire = (path) => {
+        try {
+         return require(`../../Images/${path}.jpg`);
+        } catch (err) {
+         return null;
+        }
+      };
+
+    var itemList = [];
+    let count = 0;
+    console.log(data);
+    _.map(Object.keys(data), (key) => {
+        if (count === 5) {
+            return 
+        }
+        const item = data[key];
+        const imagePath = `${props.type}/0${item["articleId"]}`;
+        if (tryRequire(imagePath)) {
+            itemList.push(
+                <Grid 
+                    item 
+                    xs={2.25}
+                    key={item["articleId"]}
+                >
+                    <ItemCard
+                        key={item["articleId"]}
+                        id = {item["articleId"]}
+                        name = {item["articleId"]}
+                        imagePath = {imagePath}
+                        itemName = {item["productName"]}
+                        itemPrice = {item["price"]}
+                    />
+                </Grid>
+            )
+            count += 1;
+        } 
+    })
     
     return(
         <Box
@@ -26,24 +64,7 @@ const Recommendations = (props) => {
                 {props.heading}
             </Typography>
             <Grid container spacing={1}>
-                { _.map(_.take(data, 5), (item, key) => {
-                    return (
-                        <Grid 
-                            item 
-                            xs={2.25}
-                            key={item["articleId"]}
-                        >
-                            <ItemCard
-                                id = {item["articleId"]}
-                                name = {item["articleId"]}
-                                imagePath = {`${props.type}/${item["articleId"]}`}
-                                itemName = {item["productName"]}
-                                itemPrice = {item["price"]}
-                            />
-                        </Grid>
-                        )
-                    }
-                )}
+                {itemList}
                 <Grid 
                     item 
                     display="flex"
