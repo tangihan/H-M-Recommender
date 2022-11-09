@@ -137,6 +137,6 @@ export {
   getStoreCatalog,
   getRecommendationByProduct,
   getRecommendationByProductColdStart,
-  // getRecommendationByProperty, 
+  getRecommendationByProperty, 
   getRecommendationByGeneration
 };

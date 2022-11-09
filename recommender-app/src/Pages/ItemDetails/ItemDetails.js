@@ -6,8 +6,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import BreadCrumbs from "../../Components/BreadCrumbs/BreadCrumbs";
 import Recommendations from "../../Components/Recommendations/Recommendations";
-// import { getRecommendationByProperty, getRecommendationByProduct, getRecommendationByProductColdStart, getRecommendationByGeneration } from "../../API/api";
-import { getRecommendationByProduct, getRecommendationByProductColdStart, getRecommendationByGeneration } from "../../API/api";
+import { getRecommendationByProperty, getRecommendationByProduct, 
+getRecommendationByProductColdStart, getRecommendationByGeneration } from "../../API/api";
 import { AccountContext } from "../../Contexts/AccountContext";
 
 
@@ -15,7 +15,7 @@ const ItemDetails = () => {
 
     const { itemData } = useLocation().state; 
     const { accountType, seasonType } = useContext(AccountContext);
-
+  
     const [propertyData, setPropertyData] = useState();
     const [productData, setProductData] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,6 @@ const ItemDetails = () => {
 
     const fetchRecommendation = async () => {
         let productResponse;
-        let propertyResponse;
         try {
             if (accountType === "Account") {
                 productResponse = await getRecommendationByProductColdStart(itemData["itemName"]);
@@ -36,8 +35,8 @@ const ItemDetails = () => {
                     productResponse = await getRecommendationByGeneration(accountType, seasonType);
                 }
             }
-            // const propertyResponse = await getRecommendationByProperty(itemData["id"]);
-            // setPropertyData(propertyResponse.data);
+            const propertyResponse = await getRecommendationByProperty(itemData["id"]);
+            setPropertyData(propertyResponse.data);
             setProductData(productResponse.data);
             setIsLoading(false);
         } catch (e) {
@@ -119,11 +118,11 @@ const ItemDetails = () => {
                     data = {productData}
                     type="Product"
                 />
-                {/* <Recommendations 
+                <Recommendations 
                     heading="You may be interested in"
                     data = {propertyData}
                     type="Property"
-                /> */}
+                />
                 </>                
             }
 
