@@ -56,7 +56,7 @@ const ItemDetails = () => {
                 flexDirection="row"
             >
                 <img 
-                    src={require(`../../Images/${itemData["imagePath"]}.jpg`)}
+                    src={require(`../../Images/Items/${itemData["imagePath"]}.jpg`)}
                     alt={itemData["itemName"]}
                     width="350px"
                 />

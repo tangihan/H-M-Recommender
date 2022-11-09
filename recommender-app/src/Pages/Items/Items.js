@@ -50,7 +50,7 @@ const Items = () => {
                     <ItemCard
                         id = {item["articleId"]}
                         name = {item["articleId"]}
-                        imagePath = {`${categories}/0${item["articleId"]}`}
+                        imagePath = {`0${item["articleId"]}`}
                         itemName = {item["productName"]}
                         itemPrice = {item["price"]}
                     />

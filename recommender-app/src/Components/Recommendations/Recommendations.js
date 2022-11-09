@@ -12,7 +12,7 @@ const Recommendations = (props) => {
 
     const tryRequire = (path) => {
         try {
-         return require(`../../Images/${path}.jpg`);
+         return require(`../../Images/Items/${path}.jpg`);
         } catch (err) {
          return null;
         }
@@ -25,7 +25,7 @@ const Recommendations = (props) => {
             return 
         }
         const item = data[key];
-        const imagePath = `${props.type}/0${item["articleId"]}`;
+        const imagePath = `0${item["articleId"]}`;
         if (tryRequire(imagePath)) {
             itemList.push(
                 <Grid 

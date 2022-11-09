@@ -18,7 +18,7 @@ const BreadCrumbs = () => {
             paddingTop="20px"
         >
             <Typography fontSize="14px">
-                { isCategory ? `HM.com/${location["categories"]}/View All` : `HM.com/${location["itemName"]}` }
+                { isCategory ? `HM.com/${location["categories"]}/View All` : `HM.com/${location["itemData"]["itemName"]}` }
             </Typography>
         </Box> 
     )

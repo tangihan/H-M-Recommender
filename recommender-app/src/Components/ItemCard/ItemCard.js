@@ -26,7 +26,7 @@ const ItemCard = (props) => {
                         id={props.id}
                         component="img"
                         height="240"
-                        image={require(`../../Images/${props.imagePath}.jpg`)}
+                        image={require(`../../Images/Items/${props.imagePath}.jpg`)}
                         sx={{objectFit: "contain"}}
                         title= {props.itemName}
                     />
